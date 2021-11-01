@@ -1,0 +1,81 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: soc_thunderboard_brd4166a
+label: soc_thunderboard_brd4166a
+description: |
+  Demonstrates the features of the Thunderboard Sense 2 Kit. This can be tested with the Thunderboard mobile app.
+category: Bluetooth Examples
+package: Bluetooth
+quality: production
+source:
+- {path: advertise.c}
+- {path: app.c}
+- {path: app_properties.c}
+- {path: main.c}
+- {path: brd4166a/rgbled.c, folder: brd4166a}
+tag: [prebuilt_demo]
+include:
+- path: ''
+  file_list:
+  - {path: advertise.h}
+  - {path: app.h}
+- path: brd4166a
+  file_list:
+  - {path: board.h, folder: brd4166a}
+sdk: {id: gecko_sdk, version: 3.0.0}
+toolchain_settings: []
+component:
+- {id: iostream_retarget_stdio}
+- instance: [btn0, btn1]
+  id: simple_button
+- {id: brd4166a}
+- {id: gatt_service_battery}
+- {id: simple_timer}
+- {id: mpu}
+- {id: gatt_service_rht}
+- {id: gatt_service_pressure}
+- {id: gatt_service_sound}
+- instance: [servo0]
+  id: pwm
+- instance: [led0, led1]
+  id: simple_led
+- {id: gatt_service_hall}
+- {id: sensor_sound}
+- {id: gatt_service_aio}
+- {id: rail_util_pti}
+- {id: sensor_pressure}
+- {id: sensor_hall}
+- {id: app_log}
+- {id: gatt_service_light}
+- instance: [vcom]
+  id: iostream_usart
+- instance: [led_rgb]
+  id: simple_rgbw_pwm_led
+- {id: sensor_imu}
+- instance: [sensor]
+  id: i2cspm
+- {id: printf}
+- {id: gatt_service_imu}
+- {id: component_catalog}
+- {id: gatt_service_gas}
+- {id: ota_dfu}
+- {id: sensor_gas}
+- {id: bootloader_interface}
+- {id: app_assert}
+- {id: gatt_service_rgb}
+- {id: sensor_light}
+- {id: sensor_rht}
+- {id: bluetooth}
+- {id: power_supply}
+other_file:
+- {path: create_bl_files.bat}
+- {path: create_bl_files.sh}
+define:
+- {name: SL_SIMPLE_BUTTON_COUNT, value: '2'}
+- {name: SL_SIMPLE_LED_COUNT, value: '2'}
+configuration:
+- {name: SL_STACK_SIZE, value: '2048'}
+- {name: SL_HEAP_SIZE, value: '8630'}
+- {name: SL_BOARD_ENABLE_VCOM, value: '1'}
+- {name: SL_BOARD_ENABLE_SENSOR_RHT, value: '1'}
+ui_hints: {}
+
